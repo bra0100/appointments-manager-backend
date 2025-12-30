@@ -27,11 +27,11 @@ Each layer has a single responsibility:
 
 ## Project Structure
 
-src folder:
--- constants/
--- controllers/
--- routes/
--- services/
+src/
+    constants/
+    controllers/
+    routes/
+    services/
 
 ---
 
