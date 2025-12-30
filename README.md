@@ -28,10 +28,10 @@ Each layer has a single responsibility:
 ## Project Structure
 
 src/
-    constants/
-    controllers/
-    routes/
-    services/
+  -  constants/
+  -  controllers/
+  -  routes/
+  - services/
 
 ---
 
