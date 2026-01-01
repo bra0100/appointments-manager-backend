@@ -28,9 +28,9 @@ export const updateClient = (id, data) => {
         throw new Error('Client not found');
     }
 
-    client.name = data.name || client.name;
-    client.email = data.email || client.email;
-    client.phone = data.phone || client.phone;
+    client.name = data.name ?? client.name;
+    client.email = data.email ?? client.email;
+    client.phone = data.phone ?? client.phone;
 
     return client;
 };
