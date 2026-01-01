@@ -1,5 +1,22 @@
 import * as appointmentService from "../services/appointment.service.js";
 
+
+export const getAppointments = (req, res) => {
+    try {
+        const { status } = req.query;
+
+        if (status) {
+            const filtered = appointmentService.getAppointmentsByStatus(status);
+            res.status(200).json(filtered);
+        }
+        const appointments = appointmentService.getAllAppointments();
+        res.status(200).json(appointments);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+
 export const createAppointment = (req, res) => {
     try {
         const newAppointment = appointmentService.addAppointment(req.body);
@@ -8,14 +25,6 @@ export const createAppointment = (req, res) => {
         res.status(400).json({ error: error.message });
     }
 };
-
-export const getAppointments = (req, res) => {
-    try {
-        res.status(200).json(appointmentService.getAllAppointments());
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-}
 
 export const cancelAppointment = (req, res) => {
     try {
