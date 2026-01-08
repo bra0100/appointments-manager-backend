@@ -79,8 +79,8 @@ export const attendedAppointment = async (id) => {
     if (!appointment) throw new Error('Appointment not found');
     if (appointment.status !== APPOINTMENT_STATUS.PENDING) throw new Error('Only pending appointments can be completed');
 
-    await updateAppointment(id, { status: APPOINTMENT_STATUS.COMPLETED });
-    return { message: 'Appointment marked as completed successfully' };
+    await updateAppointment(id, { status: APPOINTMENT_STATUS.ATTENDED });
+    return { message: 'Appointment marked as attended successfully' };
 };
 
 export const rescheduleAppointment = async (id, date, time) => {

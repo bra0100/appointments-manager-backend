@@ -13,6 +13,7 @@ const PORT = 3000;
 
 
 app.use(express.json());
+
 app.use('/clients', clientsRoutes);
 app.use('/services', servicesRouter);
 app.use('/appointments', appointmentsRoutes);
@@ -21,6 +22,4 @@ app.get('/', (req, res) => {
     res.json({ message: 'Appointments Management Backend' });
 })
 
-app.listen(PORT, () => {
-    console.log(`http://localhost:${PORT}`);
-})
+export default app;
