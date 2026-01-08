@@ -1,13 +1,13 @@
 import * as clientService from '../services/client.service.js';
 
-export const getClients = (req, res) => {
-    const clients = clientService.getAllClients();
+export const getClients = async (req, res) => {
+    const clients = await clientService.getAllClients();
     res.json(clients);
 };
 
-export const createClient = (req, res) => {
+export const createClient = async (req, res) => {
     try {
-        const newClient = clientService.addClient(req.body);
+        const newClient = await clientService.addClient(req.body);
         res.status(201).json(newClient);
     } catch (error) {
         res.status(400).json({ error: error.message });

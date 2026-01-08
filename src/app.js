@@ -1,8 +1,11 @@
 
 import express from 'express';
+import './db/database.js';
+
 import clientsRoutes from './routes/clients.routes.js';
 import servicesRouter from './routes/services.routes.js';
 import appointmentsRoutes from './routes/appointments.routes.js';
+
 
 
 const app = express();

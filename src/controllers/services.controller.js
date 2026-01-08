@@ -1,13 +1,13 @@
 import * as serviceServices from '../services/service.service.js';
 
-export const getAllServices = (req, res) => {
-    const services = serviceServices.getAllServices();
+export const getAllServices = async (req, res) => {
+    const services = await serviceServices.getAllServices();
     res.json(services);
 }
 
-export const addService = (req, res) => {
+export const addService = async (req, res) => {
     try {
-        const newService = serviceServices.addService(req.body);
+        const newService = await serviceServices.addService(req.body);
         res.status(201).json(newService);
     } catch (error) {
         res.status(400).json({ error: error.message });

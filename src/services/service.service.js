@@ -1,24 +1,24 @@
-let service = [];
-let nextId = 1;
+import { createService, findAllServices, getServiceById } from "../repositories/service.repository.js";
 
-export const getAllServices = () => {
-    return service;
+export const getAllServices = async () => {
+    return await findAllServices();
 }
 
-export const addService = (data) => {
+export const addService = async (data) => {
     if (!data.name) {
         throw new Error('Name is required');
     }
-    const newService = {
-        id: nextId++,
-        name: data.name,
-        description: data.description || null,
-        price: data.price || 0,
-        active: true
+    const price = Number(data.price ?? 0);
+
+    if (price < 0) {
+        throw new Error('Price must be a non-negative number');
     }
 
-    service.push(newService);
-    return newService;
+    return await createService({
+        name: data.name,
+        description: data.description ?? "",
+        price: price
+    });
 }
 
 export const updateService = (id, data) => {
@@ -45,3 +45,10 @@ export const deleteService = (id) => {
     svc.active = false;
 }
 
+export const getById = async (id) => {
+    const svc = await getServiceById(id);
+    if (!svc) {
+        throw new Error('Service not found');
+    }
+    return svc;
+}

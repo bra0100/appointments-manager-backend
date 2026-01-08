@@ -1,53 +1,55 @@
-import * as appointmentService from "../services/appointment.service.js";
+import {
+    addAppointment,
+    getAllAppointments,
+    cancelAppointment,
+    rescheduleAppointment,
+    attendedAppointment
+} from '../services/appointment.service.js';
 
 
-export const getAppointments = (req, res) => {
+
+export const getAppointments = async (req, res) => {
     try {
         const { status } = req.query;
-
-        if (status) {
-            const filtered = appointmentService.getAppointmentsByStatus(status);
-            res.status(200).json(filtered);
-        }
-        const appointments = appointmentService.getAllAppointments();
+        const appointments = await getAllAppointments(status);
         res.status(200).json(appointments);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(400).json({ error: error.message });
     }
 };
 
 
-export const createAppointment = (req, res) => {
+export const createAppointment = async (req, res) => {
     try {
-        const newAppointment = appointmentService.addAppointment(req.body);
+        const newAppointment = await addAppointment(req.body);
         res.status(201).json(newAppointment);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
 };
 
-export const cancelAppointment = (req, res) => {
+export const cancelAppointments = async (req, res) => {
     try {
-        const cancelledAppointment = appointmentService.cancelAppointment(req.params.id);
+        const cancelledAppointment = await cancelAppointment(req.params.id);
         res.status(200).json(cancelledAppointment);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
 };
 
-export const attendAppointment = (req, res) => {
+export const attendAppointments = async (req, res) => {
     try {
-        const attendedAppointment = appointmentService.attendedAppointment(req.params.id);
-        res.status(200).json(attendedAppointment);
+        const attAppointment = await attendedAppointment(req.params.id);
+        res.status(200).json(attAppointment);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
 };
 
-export const rescheduleAppointment = (req, res) => {
+export const rescheduleAppointments = async (req, res) => {
     try {
         const { date, time } = req.body;
-        const appointment = appointmentService.rescheduleAppointment(req.params.id, date, time);
+        const appointment = await rescheduleAppointment(req.params.id, date, time);
         res.status(200).json(appointment);
     } catch (error) {
         res.status(400).json({ error: error.message });

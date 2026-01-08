@@ -1,18 +1,18 @@
 import { Router } from 'express';
 import {
-    createAppointment,
     getAppointments,
-    cancelAppointment,
-    attendAppointment,
-    rescheduleAppointment
+    createAppointment,
+    cancelAppointments,
+    attendAppointments,
+    rescheduleAppointments
 } from '../controllers/appointments.controller.js';
 
 const router = Router();
 
 router.get('/', getAppointments);
 router.post('/', createAppointment);
-router.patch('/:id/cancel', cancelAppointment);
-router.patch('/:id/attend', attendAppointment);
-router.patch('/:id/reschedule', rescheduleAppointment);
+router.patch('/:id/cancel', cancelAppointments);
+router.patch('/:id/attend', attendAppointments);
+router.patch('/:id/reschedule', rescheduleAppointments);
 
 export default router;
