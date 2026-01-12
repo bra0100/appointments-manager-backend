@@ -34,9 +34,13 @@ Routes -> Controllers -> Services -> Repositories -> Database
 ### Layers responsibilities
 
 -- **Routes**: define HTTP endpoints.
+
 -- **Controllers**: handle request and responses.
+
 -- **Services**: contain business logic and validations.
+
 -- **Repositories**: handle database access (SQL).
+
 -- **Database**: SQLite relational database.
 
 ## Database Design
@@ -120,6 +124,7 @@ test -> npm test
 git clone https://github.com/bra0100/appointments-manager-backend.git
 cd appointments-manager-backend
 npm install
+```
 
 
 ## Notes
