@@ -112,7 +112,8 @@ The project includes integration test using **Jest** and **Supertest**.
 ### Test and Server
 
 Server -> npm start (http://localhost:3000)
-test -> npm test
+
+Test -> npm test
 
 ### Requirements
 - Node.js
@@ -131,4 +132,4 @@ npm install
 
 This project uses Node.js instead of .NET, but strictly follows the same architectural principles requires required in the original specification.
 
-Developed as a backend architecture and domain-driven practice project/
+Developed as a backend architecture and domain-driven practice project.
