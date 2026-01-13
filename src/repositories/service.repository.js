@@ -47,3 +47,50 @@ export const getServiceById = (id) => {
         });
     });
 }
+
+export const updateService = (id, name, description, price) => {
+    return new Promise((resolve, reject) => {
+        const sql = `
+        UPDATE services 
+        SET name = COALESCE(?, name),
+            description = COALESCE(?, description),
+            price = COALESCE(?, price)
+        WHERE id = ? AND active = 1
+        `;
+
+        db.run(sql, [name, description, price, id], function (err) {
+            if (err) {
+                reject(err);
+            } else if (this.changes === 0) {
+                reject(new Error('Service not found'));
+            } else {
+                resolve({
+                    id: Number(id),
+                    name,
+                    description,
+                    price
+                });
+            }
+        });
+    });
+};
+
+export const deleteService = (id) => {
+    return new Promise((resolve, reject) => {
+        const sql = `
+        UPDATE services 
+        SET active = 0
+        WHERE id = ? AND active = 1
+        `;
+
+        db.run(sql, [id], function (err) {
+            if (err) {
+                reject(err);
+            } else if (this.changes === 0) {
+                reject(new Error('Service not found'));
+            } else {
+                resolve();
+            }
+        });
+    });
+};

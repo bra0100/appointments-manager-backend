@@ -1,5 +1,6 @@
 
 import express from 'express';
+import cors from 'cors';
 import './db/database.js';
 
 import clientsRoutes from './routes/clients.routes.js';
@@ -10,8 +11,7 @@ import appointmentsRoutes from './routes/appointments.routes.js';
 
 const app = express();
 const PORT = 3000;
-
-
+app.use(cors());
 app.use(express.json());
 
 app.use('/clients', clientsRoutes);

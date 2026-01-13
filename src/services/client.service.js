@@ -1,4 +1,4 @@
-import { createClient, findAllClients, getClientById } from "../repositories/clients.repository.js";
+import { createClient, findAllClients, getClientById, updateClient as updateClientRepo, deleteClient as deleteClientRepo } from "../repositories/clients.repository.js";
 
 
 export const getAllClients = async () => {
@@ -10,29 +10,20 @@ export const addClient = async (data) => {
         throw new Error('Name is required');
     }
 
-    return await createClient(data.name);
+    return await createClient(data.name, data.email, data.phone);
 };
 
-export const updateClient = (id, data) => {
-    const client = clients.find(c => c.id === Number(id));
-    if (!client) {
-        throw new Error('Client not found');
-    }
-
-    client.name = data.name ?? client.name;
-    client.email = data.email ?? client.email;
-    client.phone = data.phone ?? client.phone;
-
-    return client;
+export const updateClient = async (id, data) => {
+    return await updateClientRepo(
+        id,
+        data.name,
+        data.email,
+        data.phone
+    );
 };
 
-export const deleteClient = (id) => {
-    const client = clients.find(c => c.id === Number(id));
-    if (!client) {
-        throw new Error('Client not found');
-    }
-
-    client.active = false;
+export const deleteClient = async (id) => {
+    return await deleteClientRepo(id);
 };
 
 export const getById = async (id) => {

@@ -1,4 +1,4 @@
-import { createService, findAllServices, getServiceById } from "../repositories/service.repository.js";
+import { createService, findAllServices, getServiceById, updateService as updateServiceRepo, deleteService as deleteServiceRepo } from "../repositories/service.repository.js";
 
 export const getAllServices = async () => {
     return await findAllServices();
@@ -21,28 +21,17 @@ export const addService = async (data) => {
     });
 }
 
-export const updateService = (id, data) => {
-    const svc = service.find(s => s.id === Number(id));
-
-    if (!svc) {
-        throw new Error('Service not found');
-    }
-
-    svc.name = data.name ?? svc.name;
-    svc.description = data.description ?? svc.description;
-    svc.price = data.price ?? svc.price;
-
-    return svc;
+export const updateService = async (id, data) => {
+    return await updateServiceRepo(
+        id,
+        data.name,
+        data.description,
+        data.price
+    );
 }
 
-export const deleteService = (id) => {
-    const svc = service.find(s => s.id === Number(id));
-
-    if (!svc) {
-        throw new Error('Service not found');
-    }
-
-    svc.active = false;
+export const deleteService = async (id) => {
+    return await deleteServiceRepo(id);
 }
 
 export const getById = async (id) => {

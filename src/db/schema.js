@@ -5,6 +5,8 @@ export const initSchema = (db) => {
         db.run(`CREATE TABLE IF NOT EXISTS clients (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
+        email TEXT,
+        phone TEXT,
         active INTEGER DEFAULT 1
     )
 `)
