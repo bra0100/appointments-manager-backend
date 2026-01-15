@@ -65,7 +65,7 @@ Normalized and structured as:
 - `serviceId` (FK)
 - `date`
 - `time`
-- `status` (`pending`, `attended`. `cancelled`)
+- `status` (`pending`, `attended`. `canceled`)
 
 ## Project Structure
 
