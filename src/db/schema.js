@@ -32,7 +32,7 @@ export const initSchema = (db) => {
         FOREIGN KEY (serviceId) REFERENCES services(id),
 
         UNIQUE (serviceId, date, time),
-        CHECK (status in ('pending', 'attended', 'cancelled'))
+        CHECK (status in ('pending', 'attended', 'canceled'))
     )
 `)
     })
