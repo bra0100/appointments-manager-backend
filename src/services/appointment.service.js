@@ -67,10 +67,10 @@ export const cancelAppointment = async (id) => {
     const appointment = await findAppointmentById(id);
     if (!appointment) throw new Error('Appointment not found');
     if (appointment.status !== APPOINTMENT_STATUS.PENDING)
-        throw new Error('Only pending appointments can be cancelled');
+        throw new Error('Only pending appointments can be canceled');
 
-    await updateAppointment(id, { status: APPOINTMENT_STATUS.CANCELLED });
-    return { message: 'Appointment cancelled successfully' };
+    await updateAppointment(id, { status: APPOINTMENT_STATUS.CANCELED });
+    return { message: 'Appointment canceled successfully' };
 }
 
 export const attendedAppointment = async (id) => {

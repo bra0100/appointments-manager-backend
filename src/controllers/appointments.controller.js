@@ -30,8 +30,8 @@ export const createAppointment = async (req, res) => {
 
 export const cancelAppointments = async (req, res) => {
     try {
-        const cancelledAppointment = await cancelAppointment(req.params.id);
-        res.status(200).json(cancelledAppointment);
+        const canceledAppointment = await cancelAppointment(req.params.id);
+        res.status(200).json(canceledAppointment);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
